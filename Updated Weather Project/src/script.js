@@ -23,20 +23,20 @@ function changeCity(event) {
   axios.get(apiUrl).then(getCityAndTemp);
 }
 
-function showPosition(position) {
-  let lat = position.coords.latitude;
-  let long = position.coords.longitude;
-  let currentPosition = `lat=${lat}&lon=${long}`;
-  let unit = `imperial`;
+// function showPosition(position) {
+//   let lat = position.coords.latitude;
+//   let long = position.coords.longitude;
+//   let currentPosition = `lat=${lat}&lon=${long}`;
+//   let unit = `imperial`;
 
-  let apiKey = `c6b9367bef797caf22641835dadfda42`;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?${currentPosition}&appid=${apiKey}&units=${unit}`;
-  axios.get(apiUrl).then(getCityAndTemp);
-}
+//   let apiKey = `c6b9367bef797caf22641835dadfda42`;
+//   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?${currentPosition}&appid=${apiKey}&units=${unit}`;
+//   axios.get(apiUrl).then(getCityAndTemp);
+// }
 
-function geoLocation() {
-  navigator.geolocation.getCurrentPosition(showPosition);
-}
+// function geoLocation() {
+//   navigator.geolocation.getCurrentPosition(showPosition);
+// }
 
 let citySearch = document.querySelector("#search-form");
 citySearch.addEventListener("submit", changeCity);
