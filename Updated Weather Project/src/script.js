@@ -41,5 +41,5 @@ function changeCity(event) {
 let citySearch = document.querySelector("#search-form");
 citySearch.addEventListener("submit", changeCity);
 
-let currentLocation = document.querySelector(".current-location-button");
-currentLocation.addEventListener("click", geoLocation);
+// let currentLocation = document.querySelector(".current-location-button");
+// currentLocation.addEventListener("click", geoLocation);
