@@ -31,31 +31,35 @@
               class="col-6"
             />
             <!--Search button-->
-            <input type="submit" value="Search" class="col-2 search-button" />
+            <input
+              type="submit"
+              value="Search"
+              class="col-2 search-button btn btn-primary"
+            />
             <!--Current loaction button-->
             <input
               type="submit"
               value="Current Location"
-              class="col-3 current-location-button"
+              class="col-3 current-location-button btn btn-success"
             />
           </form>
         </div>
 
         <!-- city, country,date, and time information -->
         <ul class="place-info">
-          <li id="city-country">New York, US</li>
+          <li id="city-country"></li>
           <li>Last Updated: Day Time</li>
           <li>Forecast</li>
         </ul>
 
         <!-- forecast icon, temp, characteristics -->
         <div class="row">
-          <div class="col-6 temperature">5°F</div>
+          <div class="col-6 temperature"></div>
           <div class="col-6">
             <ul class="place-characteristics">
-              <li id="humidity">Humidity:</li>
-              <li id="wind-speed">Wind Speed:</li>
-              <li id="feels-like">Feels Like:</li>
+              <li>Humidity: <span id="humidity"></span>%</li>
+              <li>Wind Speed: <span id="wind-speed"> </span> mi/hr</li>
+              <li>Feels Like: <span id="feels-like"> </span></li>
             </ul>
           </div>
         </div>
