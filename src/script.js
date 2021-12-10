@@ -1,5 +1,6 @@
 function getCityWeatherInfo(response) {
   //changes html to be inputed city weather information
+  console.log(response);
   let searchedCity = response.data.name;
   let searchedCityCountry = response.data.sys.country;
 
@@ -18,6 +19,9 @@ function getCityWeatherInfo(response) {
 
   let cityFeelsLike = document.querySelector("#feels-like");
   cityFeelsLike.innerHTML = `${Math.round(response.data.main.feels_like)}°F`;
+
+  let cityForecast = document.querySelector("#forecast");
+  cityForecast.innerHTML = response.data.weather[0].description;
 }
 
 function searchCity(city) {
