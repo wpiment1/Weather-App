@@ -1,3 +1,8 @@
+a {
+  text-decoration: none;
+  cursor: default;
+}
+
 .weather-app {
   border: 1px solid #4e5056;
   border-radius: 10px;
@@ -33,6 +38,15 @@
 .temperature-units {
   position: relative;
   top: -15px;
+}
+
+.temperature-units .active {
+  color: black;
+  cursor: pointer;
+}
+
+.temperature-units .active:hover {
+  text-decoration: none;
 }
 
 .source-code-link {

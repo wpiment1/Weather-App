@@ -44,9 +44,9 @@ function getCityWeatherInfo(response) {
   let currentCity = document.querySelector("#city-country");
   currentCity.innerHTML = `${searchedCity}, ${searchedCityCountry}`;
 
-  let cityTemp = Math.round(response.data.main.temp);
+  fahrenheitTemp = Math.round(response.data.main.temp);
   let currentTemp = document.querySelector(".temperature");
-  currentTemp.innerHTML = `${cityTemp}`;
+  currentTemp.innerHTML = `${fahrenheitTemp}`;
 
   let cityHumidity = document.querySelector("#humidity");
   cityHumidity.innerHTML = response.data.main.humidity;
@@ -83,6 +83,27 @@ function applySubmit(event) {
   searchCity(cityInput.value);
 }
 
+function displayCelsiusTemp(event) {
+  event.preventDefault();
+
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+
+  let cityTemp = document.querySelector(".temperature");
+  let celsiusTemp = (fahrenheitTemp - 32) * (5 / 9);
+  cityTemp.innerHTML = Math.round(celsiusTemp);
+}
+
+function displayFahrenheitTemp(event) {
+  event.preventDefault();
+
+  fahrenheitLink.classList.remove("active");
+  celsiusLink.classList.add("active");
+
+  let cityTemp = document.querySelector(".temperature");
+  cityTemp.innerHTML = fahrenheitTemp;
+}
+
 // function showPosition(position) {
 //   let lat = position.coords.latitude;
 //   let long = position.coords.longitude;
@@ -98,9 +119,17 @@ function applySubmit(event) {
 //   navigator.geolocation.getCurrentPosition(showPosition);
 // }
 
-searchCity("New York");
+// let currentLocation = document.querySelector(".current-location-button");
+// currentLocation.addEventListener("click", geoLocation);
+
 let citySearch = document.querySelector("#search-form");
 citySearch.addEventListener("submit", applySubmit);
 
-// let currentLocation = document.querySelector(".current-location-button");
-// currentLocation.addEventListener("click", geoLocation);
+let fahrenheitTemp = null;
+let celsiusLink = document.querySelector("#celsius");
+celsiusLink.addEventListener("click", displayCelsiusTemp);
+
+let fahrenheitLink = document.querySelector("#fahrenheit");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
+
+searchCity("New York");
