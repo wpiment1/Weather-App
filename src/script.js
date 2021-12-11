@@ -15,9 +15,6 @@ function formatDate() {
   let day = days[now.getDay()];
   let seconds = now.getSeconds();
 
-  console.log(minutes);
-  console.log(seconds);
-
   if (hours > 12) {
     hours = hours - 12;
     if (hours < 10) {
@@ -41,7 +38,6 @@ function formatDate() {
 
 function getCityWeatherInfo(response) {
   //changes html to be inputed city weather information
-  console.log(response);
   let searchedCity = response.data.name;
   let searchedCityCountry = response.data.sys.country;
 
