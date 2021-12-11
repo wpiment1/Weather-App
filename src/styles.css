@@ -39,6 +39,19 @@
   margin-left: 30px;
 }
 
+.search-button {
+  margin-left: 10px;
+}
+
+.current-location-button {
+  margin: 5px;
+}
+
+#search-input {
+  height: 38px;
+  width: 300px;
+}
+
 #forecast::first-letter {
   text-transform: uppercase;
 }
