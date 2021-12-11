@@ -46,7 +46,7 @@ function getCityWeatherInfo(response) {
 
   let cityTemp = Math.round(response.data.main.temp);
   let currentTemp = document.querySelector(".temperature");
-  currentTemp.innerHTML = `${cityTemp}°F`;
+  currentTemp.innerHTML = `${cityTemp}`;
 
   let cityHumidity = document.querySelector("#humidity");
   cityHumidity.innerHTML = response.data.main.humidity;

@@ -28,7 +28,11 @@
 }
 
 .temperature {
-  font-size: 20px;
+  font-size: 38px;
+}
+.temperature-units {
+  position: relative;
+  top: -15px;
 }
 
 .source-code-link {
@@ -37,4 +41,10 @@
 
 #forecast::first-letter {
   text-transform: uppercase;
+}
+
+#icon {
+  height: 100px;
+  width: 100px;
+  margin-bottom: 20px;
 }
