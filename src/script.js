@@ -152,23 +152,23 @@ function displayFahrenheitTemp(event) {
   cityTemp.innerHTML = fahrenheitTemp;
 }
 
-// function showPosition(position) {
-//   let lat = position.coords.latitude;
-//   let long = position.coords.longitude;
-//   let currentPosition = `lat=${lat}&lon=${long}`;
-//   let unit = `imperial`;
+function showPosition(position) {
+  let lat = position.coords.latitude;
+  let long = position.coords.longitude;
+  let currentPosition = `lat=${lat}&lon=${long}`;
+  let unit = `imperial`;
 
-//   let apiKey = `c6b9367bef797caf22641835dadfda42`;
-//   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?${currentPosition}&appid=${apiKey}&units=${unit}`;
-//   axios.get(apiUrl).then(getCityAndTemp);
-// }
+  let apiKey = `c6b9367bef797caf22641835dadfda42`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?${currentPosition}&appid=${apiKey}&units=${unit}`;
+  axios.get(apiUrl).then(getCityWeatherInfo);
+}
 
-// function geoLocation() {
-//   navigator.geolocation.getCurrentPosition(showPosition);
-// }
+function geoLocation() {
+  navigator.geolocation.getCurrentPosition(showPosition);
+}
 
-// let currentLocation = document.querySelector(".current-location-button");
-// currentLocation.addEventListener("click", geoLocation);
+let currentLocation = document.querySelector(".current-location-button");
+currentLocation.addEventListener("click", geoLocation);
 
 let citySearch = document.querySelector("#search-form");
 citySearch.addEventListener("submit", applySubmit);
