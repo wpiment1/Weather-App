@@ -13,8 +13,10 @@ a {
 
 .five-day-forecast {
   border: 1px solid black;
+  border-radius: 10px;
   padding: 5px;
   margin: 5px;
+  text-align: center;
 }
 
 .search-row {

@@ -1,3 +1,29 @@
+function displayForecast() {
+  let cityForecast = document.querySelector(".five-day-forecast");
+
+  let days = ["Thu", "Fri", "Sat", "Sun", "Mon"];
+
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      ` <div class="col">
+            <span class="forecast-day">${day}</span>
+            </br>
+            <img 
+            src="http://openweathermap.org/img/wn/04d@2x.png" 
+            alt="" 
+            width = "30"
+            />
+            </br>
+           <span class="max-temp"></span>° | <span class="min-temp"></span> °
+          </div>`;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  cityForecast.innerHTML = forecastHTML;
+}
+
 function formatDate() {
   let days = [
     "Sunday",
@@ -132,4 +158,5 @@ celsiusLink.addEventListener("click", displayCelsiusTemp);
 let fahrenheitLink = document.querySelector("#fahrenheit");
 fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
 
+displayForecast();
 searchCity("New York");
