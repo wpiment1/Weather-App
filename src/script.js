@@ -1,23 +1,37 @@
-function displayForecast() {
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
   let cityForecast = document.querySelector(".five-day-forecast");
 
-  let days = ["Thu", "Fri", "Sat", "Sun", "Mon"];
-
   let forecastHTML = `<div class="row">`;
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      ` <div class="col">
-            <span class="forecast-day">${day}</span>
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML += ` <div class="col">
+            <span class="forecast-day">${formatDay(forecastDay.dt)}</span>
             </br>
             <img 
-            src="http://openweathermap.org/img/wn/04d@2x.png" 
+            src="http://openweathermap.org/img/wn/${
+              forecastDay.weather[0].icon
+            }@2x.png" 
             alt="" 
-            width = "30"
+            width = "50"
             />
             </br>
-           <span class="max-temp"></span>° | <span class="min-temp"></span> °
+            <div class="forecast-temp">
+            <span class="max-temp">${Math.round(
+              forecastDay.temp.max
+            )}</span>°|<span class="min-temp">${Math.round(
+        forecastDay.temp.min
+      )}</span>°
+            </div>
           </div>`;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
@@ -62,6 +76,12 @@ function formatDate() {
   return `${day} ${hours}:${minutes} ${period}`;
 }
 
+function getForecast(coordinates) {
+  let apiKey = `3c0824dc32f687bca423dec021170f3a`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function getCityWeatherInfo(response) {
   //changes html to be inputed city weather information
   let searchedCity = response.data.name;
@@ -94,6 +114,8 @@ function getCityWeatherInfo(response) {
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
+
+  getForecast(response.data.coord);
 }
 
 function searchCity(city) {
@@ -158,5 +180,4 @@ celsiusLink.addEventListener("click", displayCelsiusTemp);
 let fahrenheitLink = document.querySelector("#fahrenheit");
 fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
 
-displayForecast();
 searchCity("New York");
