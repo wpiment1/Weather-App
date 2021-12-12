@@ -1,17 +1,35 @@
 function formatDay(timestamp) {
+  //gets a timestamp for the api
+  //returns days starting with tomorrow
   let date = new Date(timestamp * 1000);
-  let day = date.getDay();
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let day = date.getDay() + 1;
+  let days = [
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+  ];
   return days[day];
 }
 
 function displayForecast(response) {
+  //integrates api to display a 6 day forecast
   let forecast = response.data.daily;
   let cityForecast = document.querySelector(".five-day-forecast");
 
   let forecastHTML = `<div class="row">`;
   forecast.forEach(function (forecastDay, index) {
-    if (index < 5) {
+    if (index < 6) {
       forecastHTML += ` <div class="col">
             <span class="forecast-day">${formatDay(forecastDay.dt)}</span>
             </br>
@@ -39,6 +57,7 @@ function displayForecast(response) {
 }
 
 function formatDate() {
+  //formats date for last updated
   let days = [
     "Sunday",
     "Monday",
@@ -55,28 +74,23 @@ function formatDate() {
   let day = days[now.getDay()];
   let seconds = now.getSeconds();
 
+  //time is given in military time
+  //change to standard am/pm time
+  let period = `am`;
   if (hours > 12) {
     hours = hours - 12;
+    period = `pm`;
     if (hours < 10) {
       hours = `0${hours}`;
     } else {
       hours = `${hours}`;
     }
   }
-
-  if (hours > 12) {
-    let period = `am`;
-  } else {
-    period = `pm`;
-  }
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
-
   return `${day} ${hours}:${minutes} ${period}`;
 }
 
 function getForecast(coordinates) {
+  //to get forecast need to use the coordinates of the searched city
   let apiKey = `3c0824dc32f687bca423dec021170f3a`;
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(displayForecast);
